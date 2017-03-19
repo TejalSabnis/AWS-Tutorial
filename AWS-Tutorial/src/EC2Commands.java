@@ -18,20 +18,20 @@ import com.amazonaws.services.lightsail.model.StopInstanceRequest;
 public class EC2Commands {
 	
 	static AmazonEC2 amazonEC2client;
-	static String keyName = "windows-key-pair";
-	static String sgName = "default";
+	static String keyName = "20170301";
+	static String sgName = "launch-wizard-2";
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		amazonEC2client = AmazonEC2ClientBuilder.standard().withRegion("us-west-2").build();
-		//createInstance();
+		createInstance();
 		//stopInstance();
-		terminateInstance();
+		//terminateInstance();
 	}
 	
 	static void createInstance(){
 		RunInstancesRequest run = new RunInstancesRequest();
-		run.withImageId("ami-f173cc91").withInstanceType("t2.micro").withMinCount(1).withMaxCount(1)
+		run.withImageId("ami-9db937fd").withInstanceType("t2.micro").withMinCount(1).withMaxCount(1)
 			.withKeyName(keyName).withSecurityGroups(sgName);
 		RunInstancesResult result = amazonEC2client.runInstances(run);
 		System.out.println("Instance description: "+result.toString());
